@@ -11,7 +11,7 @@ const Contextmenu = (props) => {
         display: ${isVisible? 'block' : 'none'};
         z-index: 50;
     `
-    // console.log(props.ind);
+    
     
     return ( 
         <Container>
