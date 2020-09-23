@@ -74,7 +74,7 @@ const SideBar = () => {
     const {details, dispatch2} = useContext(SecondContext);
     const {newState} = useContext(countryContext);
     const [state1, disp] = newState;
-    const {classification} = state1;
+    // const {classification} = state1;
     // console.log(ID);
     return ( 
         <Container>

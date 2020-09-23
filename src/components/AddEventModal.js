@@ -185,7 +185,7 @@ const Addmodal = () => {
             newBg: false
         })
     const hideForm = () => {
-        dispatch2({type:'AddShow', payload: 'false'});
+        dispatch2({type:'showAddEventModal', payload: false});
     }
     
     const HandleChange = (e) => {
@@ -193,7 +193,7 @@ const Addmodal = () => {
        setData({...data, [name] : value})
     }
     
-    let bg = false
+    
     
     const HandleSubmit = (e) => {
         e.preventDefault();
@@ -268,8 +268,8 @@ return (
                             type="text" 
                             style={{marginRight : '2rem'}}
                             placeholder='country...'
-                            value={data.Country}
-                            name = 'Country'
+                            value={data.newCountry}
+                            name = 'newCountry'
                             onChange = {HandleChange}
                             />
                     </Flex2>

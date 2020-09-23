@@ -53,7 +53,7 @@ const SavedEvents = () => {
     const {show, dispatch2} = useContext(SecondContext);
     
     const showForm = () => {
-        dispatch2({type:'AddShow', payload: 'true'});
+        dispatch2({type:'showAddEventModal', payLoad: true});
     }
     return ( 
         <Container>

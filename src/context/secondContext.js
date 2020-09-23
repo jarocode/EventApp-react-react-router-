@@ -1,11 +1,17 @@
 import React, {useReducer, createContext} from 'react';
 
-const  initialState = [];
+const  initialState = {
+    showSavedEvents: false,
+    showAddEventModal : false
+};
     
 const reducer = (state, action) => {
      switch (action.type) {
-        case 'Add':
-            return state.push(action.payLoad);
+        case 'showSavedEvents':
+            let show = state.showSaved
+            return {...state, showSavedEvents : !show};
+        case 'showAddEventModal' :
+            return {...state, showAddEventModal: action.payLoad} ;
         default:
             return state;
         }
@@ -13,13 +19,13 @@ const reducer = (state, action) => {
 export  const SecondContext = createContext();
 export const  SecondProvider= ({children}) => {
     
-   const [details , dispatch] = useReducer(reducer, initialState) 
+   const [displayState , dispatch2] = useReducer(reducer, initialState) 
     
     return ( 
         <SecondContext.Provider value={
             { 
-                details, 
-                dispatch
+                displayState, 
+                dispatch2
             }
             }>
             {children}

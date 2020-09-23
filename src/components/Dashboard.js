@@ -16,15 +16,15 @@ const Container = styled.div`
 
 const Dashboard = () => {
    
-    const {details} = useContext(SecondContext)
-    
+    const {displayState} = useContext(SecondContext);
+    const {showSavedEvents, showAddEventModal} = displayState;
     return ( 
         <Container>
             <SideBar/>
             <Searchbar/>
-             { details.display === 'true' ? <SavedEvents/> :
+             { showSavedEvents ? <SavedEvents/> :
             <Eventboard/> } 
-             {details.show === 'true' && <Addeventmodal/>}
+             {showAddEventModal && <Addeventmodal/>}
         </Container>
      )
 }
