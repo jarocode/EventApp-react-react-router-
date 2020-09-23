@@ -6,7 +6,7 @@ const EventDetailsAPI = (match)  => async (dispatch, getState) => {
     const {dates, images, name, classifications, _embedded } = result;
     const {genre, segment, subGenre} = classifications[0];
     const {country, city, state, address} =_embedded.venues[0] 
-    console.log(address.line1);
+    
     
     //event name and backgroundImage
     const eventImage = images[0].url;
@@ -42,7 +42,8 @@ const EventDetailsAPI = (match)  => async (dispatch, getState) => {
         eventTime,
         eventTimezone
     }
-dispatch({type: ADD_EVENT_DETAILS, payLoad: eventData })
+dispatch({type: ADD_EVENT_DETAILS, payLoad: eventData });
+console.log(getState().details);
  }
 
  export default EventDetailsAPI;

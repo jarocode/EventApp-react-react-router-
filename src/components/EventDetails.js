@@ -49,7 +49,8 @@ const EventDetails = ({match}) => {
                 </ul>
                 </Nav>
                 {details.showSuccess === 'true' && <SuccessModal/>}
-                <DetailsCard/>
+                {Object.keys(details) === 0? <Spinner/> :
+                <DetailsCard data = {details}/>}
         </>
      );
 }

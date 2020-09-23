@@ -36,7 +36,6 @@ const LongCard = styled.div`
 `
 const Div1 = styled.div`
     text-align: center;
-    
 `
 const Div2 = styled.div`
     border-right: 1px solid #cfcfcf;
@@ -88,8 +87,22 @@ const Button = styled.button`
     border: 1px solid #00f;
     border-radius: 7px;
 `
-const DetailsCard = () => {
+const DetailsCard = ({data}) => {
     
+    const {
+        eventImage, 
+        eventName, 
+        eventType, 
+        eventGenre, 
+        eventsubGenre,
+        eventCountry,
+        eventCity,
+        eventState,
+        eventAddress,
+        eventDate,
+        eventTime,
+        eventTimezone
+    } = data
     const UpCard = styled.div`
     width: 100%;
     background: #000;
@@ -115,7 +128,7 @@ const DetailsCard = () => {
                 <Card>
                     <UpCard>
                        <Name>
-                          { <h1>UEFA champions league</h1>/* <h1>{details.names} </h1> */}
+                          { <h1>{eventName}</h1>}
                         </Name> 
                     </UpCard>
                     <LowCard>
@@ -124,19 +137,19 @@ const DetailsCard = () => {
                                 <Div1>
                                     <Div2>
                                         <H>TYPE</H>
-                                        { <P>type</P> /* <P>{details.types}</P> */}
+                                        { <P>{eventType}</P> }
                                     </Div2>
                                 </Div1>
                                 <Div1>
                                     <Div2>
                                         <H>GENRE</H>
-                                        { <P>genre</P>/* <P>{details.genres}</P> */}
+                                        { <P>{eventGenre}</P>}
                                     </Div2>
                                 </Div1>
                                 <Div1>
                                     <Div2>
                                         <H>SUBGENRE</H>
-                                        { <P>subgenre</P>/* <P>{details.subGenres}</P> */}
+                                        { <P>{eventsubGenre}</P>}
                                     </Div2>
                                 </Div1>
                             </LongCard>
@@ -153,15 +166,15 @@ const DetailsCard = () => {
                                     <div style={{margin: '0 1.5rem 0 1.5rem'}}>
                                         <DetailP>
                                             <span><FontAwesomeIcon icon='city'/></span> 
-                                            details.Venues[0].country.name
+                                            {eventCountry}
                                         </DetailP>
                                         <DetailP>
                                             <span><FontAwesomeIcon icon='location-arrow'/></span>
-                                            details.Venues[0].city.name, details.Venues[0].state.name
+                                            {eventCity}, {eventState}
                                         </DetailP>
                                         <p style={{color: '#6f6f6f'}}>
                                             <span><FontAwesomeIcon icon='location-arrow'/></span>
-                                            details.Venues[0].address.line1
+                                            {eventAddress}
                                         </p>
                                     </div>
                                 </DetailCard>
@@ -177,15 +190,15 @@ const DetailsCard = () => {
                                     <div style={{margin: '0 1.5rem 0 1.5rem'}}>
                                         <DetailP>
                                             <span><FontAwesomeIcon icon='city'/></span>
-                                            details.date.start.localDate
+                                            {eventDate}
                                         </DetailP>
                                         <DetailP>
                                             <span><FontAwesomeIcon icon='location-arrow'/></span>
-                                            details.date.start.localTime
+                                            {eventTime}
                                         </DetailP>
                                         <p style={{color: '#6f6f6f'}}>
                                             <span><FontAwesomeIcon icon='location-arrow'/></span>
-                                            details.date.timezone
+                                            {eventTimezone}
                                         </p>
                                     </div>
                                 </DetailCard>
