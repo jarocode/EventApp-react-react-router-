@@ -9,16 +9,19 @@ import {SecondProvider} from './context/secondContext';
 import {TableProvider} from './context/TableContext';
 import SuccessModal from './components/SuccessModal';
 import {CountryProvider} from './context/countryContext';
+import store from  './store';
+import {Provider} from 'react-redux';
 
 function App() {
   return (
-      <MyProvider>
+      <Provider store = {store}>
+        <MyProvider>
           <SecondProvider>
             <TableProvider>
               <CountryProvider>
                 <Router>
                   <Switch>
-                    <Route path='/dashboard' exact component={Dashboard}/>
+                    <Route path='/' exact component={Dashboard}/>
                     <Route path='/:id' exact component={EventDetails}/>
                     </Switch>
                   </Router>
@@ -26,6 +29,7 @@ function App() {
             </TableProvider>
           </SecondProvider>
       </MyProvider>
+      </Provider>
   );
 }
 

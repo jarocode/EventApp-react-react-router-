@@ -4,6 +4,9 @@ import Eventcard from './Eventcard';
 import { MyContext } from '../context/firstContext';
 import Spinner from './Spinner';
 import {countryContext} from '../context/countryContext';
+import {useDispatch, useSelector} from 'react-redux';
+import ApiCall from '../actions/firstApiAction';
+import {ADD_EVENTS, CHANGE_HEADER} from '../actions/types';
 
 const Container = styled.div`
     position: absolute;
@@ -37,12 +40,21 @@ const Flex = styled.div`
 `
 
 const Eventboard = () => {
-    const {state, dispatch} = useContext(MyContext);
+    const state = useSelector(state => state.event);
     const {restOfState, header} = state;
+    // const {state, dispatch} = useContext(MyContext);
+    // const {restOfState, header} = state;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(ApiCall());
+    }, []);
+    
+    
     const {newState} = useContext(countryContext);
     const [state1, disp] = newState;
     const{countryCode, classification} = state1;
     const isInitialMount = useRef(true);
+    
     
     useEffect(() => {
         if(isInitialMount.current) {
@@ -60,8 +72,8 @@ const Eventboard = () => {
                 else {
                     const {events} = res._embedded;
                      console.log(events);
-                     dispatch({type:'ChangeHeader', payload: classification })
-                     dispatch({type:'ADD', payload: events })
+                     dispatch({type: CHANGE_HEADER, payload: classification })
+                     dispatch({type: ADD_EVENTS, payload: events })
                 }
             });
         }
