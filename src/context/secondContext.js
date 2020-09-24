@@ -8,8 +8,7 @@ const  initialState = {
 const reducer = (state, action) => {
      switch (action.type) {
         case 'showSavedEvents':
-            let show = state.showSaved
-            return {...state, showSavedEvents : !show};
+            return {...state, showSavedEvents : action.payLoad};
         case 'showAddEventModal' :
             return {...state, showAddEventModal: action.payLoad} ;
         default:

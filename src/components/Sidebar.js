@@ -13,6 +13,8 @@ const Container = styled.div`
     background: #1a1a3d;
     height: 100%;
     width: 19%;
+    position: fixed;
+    z-index: 3;
 `
 const User = styled.div`
     border-bottom: 1px solid #7f7f7f;

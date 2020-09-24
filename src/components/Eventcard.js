@@ -1,88 +1,94 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {withRouter} from 'react-router-dom';
 
+const Container = styled.div`
+    height: 22rem;
+    width: 16rem;
+    margin: 1.5rem;
+    box-shadow: 2px 2px 4px 4px #eee;
+    border-radius: 3px;
+`
 
-const Content = styled.div`
-    margin: 0 0.7rem 0 0.7rem;
+const Lowercard = styled.div`
+    /* padding-top: 1.1rem; */
 `
-const H5 = styled.h4`
-    margin: 0.4rem 0 0 0;
+const LowContent = styled.div`
+    margin: auto;
+    height: 9rem;
+    width: 15rem;
+`
+const H3 = styled.h3`
+    margin: 0;
+    z-index: 3;
     color: #fff;
-    z-index: 2;
-`
-const H6 = styled.h6`
-    margin: 0.1rem 0 0 0;
-    color: #797979;
 `
 const P1 = styled.p`
-    font-size: 0.65em;
-    margin: 0.6rem 0.8rem 0 0;
-    color: #fff;
-    z-index: 2;
+    color: #777;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 1rem 0rem;
 `
 const P2 = styled.p`
-    font-size: 0.67em;
-    color: #00f;
-    margin-top: 0.3rem;
-    z-index: 2;
+    color: #9c9c9c;
+    font-size: 0.95em;
+    margin: 0.6rem 0rem;
 `
 const Button = styled.button`
-    background: #ef3434;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 5px 10px 5px 10px;
-    font-size: 0.65em;
-    float: right;
-    border-radius: 7px;
-    margin-bottom: 0rem;
-    width: 2.6rem;
-    z-index: 2;
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 1.2rem;
+    background: #1a1a3d;
+    border: 1px solid #1a1a3d;
+    border-radius: 2px;
+    color: #fff; 
+`
+const Span = styled.span`
+    margin-right: 0.5rem;
+    opacity: 0.5;
 `
 
 const EventCard = ({name, date, image, history,id}) => {
     
-  const Container = styled.div`
-   position: relative;
-   width: 30%;
-   height: 45%;
-   border: none;
-   border-radius: 5px;
-   /* box-shadow: 3px 3px 1px 1px #dfdfdf; */
-   margin-left: 1rem;
-   background: url(${image}) no-repeat;
-   background-size: 300px 200px;
-   z-index: 1;
-   &::after {
-        position: absolute;
-        content: '';
-        height: 100%;
+    const Uppercard = styled.div`
+        background: url(${image}) center/cover no-repeat;
         width: 100%;
-        z-index: -1;
-        background: #3c3c5f;
-        opacity: 0.65;
-        top: 0;
-   }
-
-`  
-const handleClick = () => {
-    history.push(`/${id}`)
-}
+        height: 55%;
+        border-radius: inherit;
+        position: relative;
+        z-index: 2;
+        &::after{
+            content: '';
+            background: #1a1a3d;
+            position: absolute;
+            opacity: 0.7;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            z-index: 1;
+        }
+    `
+  
+  
+// const handleClick = () => {
+//     history.push(`/${id}`)
+// }
 
     
     return ( 
         <Container>
-            <Content>
-                <H5>{name}</H5>
-                <H6><span></span>New boston</H6>
-                <P1>
-                    Lorem ipsum dolor sit amet consectetur 
-                    adipisicing elit.Fugit repellendus accusamus 
-                </P1>
-                <P2><span></span>{date}</P2>
-                <span></span><Button onClick={handleClick}></Button>
-            </Content>
+            <Uppercard>
+                <H3><Span><FontAwesomeIcon icon='map-marker-alt' color='#ff3434'/></Span>California</H3>
+            </Uppercard>
+            <Lowercard>
+                <LowContent>
+                    <P1><Span><FontAwesomeIcon icon='map-marked' color='#ff3434'/></Span>{name}</P1>
+                    <P2><Span><FontAwesomeIcon icon='calendar-alt' color='#ff3434'/></Span>{date}</P2>
+                    <Button>view details</Button>
+                </LowContent>
+            </Lowercard>
         </Container>
      );
 }

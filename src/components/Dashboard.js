@@ -10,8 +10,9 @@ import Addeventmodal from './AddEventModal';
  
 
 const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
+    overflow-x: hidden;
 `
 
 const Dashboard = () => {
@@ -21,10 +22,12 @@ const Dashboard = () => {
     return ( 
         <Container>
             <SideBar/>
-            <Searchbar/>
-             { showSavedEvents ? <SavedEvents/> :
-            <Eventboard/> } 
-             {showAddEventModal && <Addeventmodal/>}
+            <div>
+                <Searchbar/>
+                { showSavedEvents ? <SavedEvents/> :
+                <Eventboard/> } 
+                {showAddEventModal && <Addeventmodal/>}
+            </div>
         </Container>
      )
 }

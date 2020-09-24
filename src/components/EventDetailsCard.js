@@ -1,6 +1,7 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext} from 'react';
 import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {TableContext} from '../context/TableContext';
 
 const Card = styled.div`
     border: 1px solid #fff;
@@ -88,7 +89,7 @@ const Button = styled.button`
     border-radius: 7px;
 `
 const DetailsCard = ({data}) => {
-    
+    const {dispatch3} = useContext(TableContext);
     const {
         eventImage, 
         eventName, 
@@ -122,6 +123,9 @@ const DetailsCard = ({data}) => {
         opacity: 0.5;
     }
 `
+const handleSubmit = () => {
+    console.log('hi');
+}
     return ( 
         <Fragment>
             { 
@@ -203,7 +207,7 @@ const DetailsCard = ({data}) => {
                                     </div>
                                 </DetailCard>
                              </DetailDiv>
-                             <Button><FontAwesomeIcon icon='pen-alt'/>ADD EVENT</Button>
+                             <Button onClick ={handleSubmit}><FontAwesomeIcon icon='pen-alt'/>ADD EVENT</Button>
                         </LowCard>
                 </Card> }
         </Fragment>

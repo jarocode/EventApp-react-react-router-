@@ -13,13 +13,13 @@ export const SelectClick = (names , disp, set, ind, disp2) => {
     
     switch(names) {
         case 'My events':
-            return disp({type:'showSavedEvents'});
+            return disp({type:'showSavedEvents', payLoad: true});
                    
         case 'Add Events':
             return  disp({type:'showAddEventModal', payLoad:true});
             
         default:
-            disp({type:'AddDisplay', payload: 'false'});
+            disp({type:'showSavedEvents', payLoad: false});
             Classification(ind, disp2);
             return set(ind);
     }

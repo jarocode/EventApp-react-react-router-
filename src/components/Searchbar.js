@@ -6,13 +6,10 @@ import { MyContext } from '../context/firstContext';
 const Container  = styled.div`
     & {
         position: relative;
-        background: url("./img/checklist2.jpg")  no-repeat;
-        margin-right: 0rem;
-        margin-bottom: 37.05rem;
-        padding-left: 2rem; 
-        padding-left: 2.2rem;
-        padding-right: 28.6rem; 
-        z-index: 1;
+        background: url("./img/checklist2.jpg")  center/cover no-repeat;
+        z-index: -1; 
+        width: 80rem;
+        height: 10.35rem;
 
     }
     & :after {
@@ -24,7 +21,7 @@ const Container  = styled.div`
         left: 0rem;
         height: 100%;
         width: 100%;
-        z-index: -1;
+        z-index: -2;
     }
 `
 const Input = styled.input`
@@ -65,8 +62,8 @@ const Searchbar = () => {
     
     return ( 
         <Container>
-             <Span><FontAwesomeIcon icon=''/></Span><Input type='text' placeholder='&#xF002;'/>
-            <Button onClick={() => Handle(state)} >+</Button>
+             {/* <Span><FontAwesomeIcon icon=''/></Span><Input type='text' placeholder='&#xF002;'/> */}
+            {/* <Button onClick={() => Handle(state)} >+</Button> */}
             <div></div>
         </Container>
      );

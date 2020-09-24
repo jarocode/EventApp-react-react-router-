@@ -9,15 +9,13 @@ import ApiCall from '../actions/firstApiAction';
 import {ADD_EVENTS, CHANGE_HEADER} from '../actions/types';
 
 const Container = styled.div`
-    position: absolute;
+    position: static;
     color: #000;
     border: 4px solid #fff;
     border-radius: 13px;
     background: #fff;
-    width: 77.3%;
-    height: 95%;
-    left: 12.85rem;
-    z-index: 3;
+    margin: -1rem .4rem 0 15.5rem;
+    z-index: 6;
     top: 7.5rem;
     box-shadow: 1px 2px 2px 2px #afafaf;
 `
@@ -33,10 +31,12 @@ const H3 = styled.h3`
 `
 const Flex = styled.div`
    padding-top: 1.3rem;
-   margin-left: 0.3rem;
+   margin: auto;
+   margin-left: 1.85rem;
    display: flex;
-   height: 75%;
+   flex-direction: row;
    flex-wrap: wrap;
+   padding: 1.5rem;
 `
 
 const Eventboard = () => {
@@ -89,12 +89,12 @@ const Eventboard = () => {
                {  Object.keys(restOfState).length === 0 ? <Spinner/> : 
                    restOfState.map(item => 
                     <Eventcard 
-                    name={item.name}
-                    key ={item.id}
-                    id={item.id}
-                    date ={item.dates.start.localDate}
-                    image ={item.images[1].url}
-                />
+                        name={item.name}
+                        key ={item.id}
+                        id={item.id}
+                        date ={item.dates.start.localDate}
+                        image ={item.images[1].url}
+                    />
                )}
             </Flex>
         </Container>
