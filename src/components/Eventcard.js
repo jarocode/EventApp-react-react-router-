@@ -22,8 +22,11 @@ const LowContent = styled.div`
 `
 const H3 = styled.h3`
     margin: 0;
-    z-index: 3;
+    z-index: 7;
     color: #fff;
+    position: relative;
+    font-weight: lighter;
+    float: right;
 `
 const P1 = styled.p`
     color: #777;
@@ -48,9 +51,11 @@ const Button = styled.button`
 const Span = styled.span`
     margin-right: 0.5rem;
     opacity: 0.5;
-`
+    z-index: 2;
+    position: relative;
+    `
 
-const EventCard = ({name, date, image, history,id}) => {
+const EventCard = ({name, date, image, history, id, venue}) => {
     
     const Uppercard = styled.div`
         background: url(${image}) center/cover no-repeat;
@@ -58,7 +63,8 @@ const EventCard = ({name, date, image, history,id}) => {
         height: 55%;
         border-radius: inherit;
         position: relative;
-        z-index: 2;
+        padding: .5rem .5rem 0 0;
+        /* z-index: 2; */
         &::after{
             content: '';
             background: #1a1a3d;
@@ -71,22 +77,28 @@ const EventCard = ({name, date, image, history,id}) => {
         }
     `
   
-  
-// const handleClick = () => {
-//     history.push(`/${id}`)
-// }
+const eventName = name.length > 16 ? name.replace(name.slice(12), '...') : name
+
+const handleClick = () => {
+    history.push(`/${id}`)
+}
 
     
     return ( 
         <Container>
             <Uppercard>
-                <H3><Span><FontAwesomeIcon icon='map-marker-alt' color='#ff3434'/></Span>California</H3>
+                <H3>
+                    <Span style= {{opacity: '1'}}>
+                        <FontAwesomeIcon icon='map-marker-alt' color='#fff'/>
+                    </Span>
+                    {venue}
+                </H3>
             </Uppercard>
             <Lowercard>
                 <LowContent>
-                    <P1><Span><FontAwesomeIcon icon='map-marked' color='#ff3434'/></Span>{name}</P1>
+                    <P1>{eventName}</P1>
                     <P2><Span><FontAwesomeIcon icon='calendar-alt' color='#ff3434'/></Span>{date}</P2>
-                    <Button>view details</Button>
+                    <Button onClick={handleClick}>view details</Button>
                 </LowContent>
             </Lowercard>
         </Container>

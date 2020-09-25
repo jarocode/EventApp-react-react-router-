@@ -3,16 +3,15 @@ import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Table from './savedEventTable';
 import {SecondContext} from '../context/secondContext';
+
 const Container = styled.div`
     background: #000;
-    width: 49.28rem;
-    position: absolute;
-    height: 40rem;
     z-index: 25;
-    left: 12.8rem;
-    top: 7.4rem;
     border-radius: 13px;
     display: block;
+    margin-top: -1rem;
+    margin-left: 15rem;
+    padding-top: .2rem;
 `
 const Body = styled.div`
     margin: 3rem 1.4rem 0 1.4rem;
@@ -26,6 +25,7 @@ const Head = styled.h3`
    margin-right: 30rem;
    padding: 7px 26px 7px 15px;
    background: #1a1a3d;
+   position: relative;
 `
 const Span2 = styled.span`
    &:hover {
@@ -35,8 +35,8 @@ const Span2 = styled.span`
 const Button = styled.button`
     border: 1px solid #0f0;
     background: none;
-    left: 15.5rem;
-    top: 3.3rem;
+    left: 28.5rem;
+    top: 0.3rem;
     padding: 6px 6px 6px 6px ;
     position: absolute;
     border-radius: 50%;

@@ -94,6 +94,7 @@ const Eventboard = () => {
                         id={item.id}
                         date ={item.dates.start.localDate}
                         image ={item.images[1].url}
+                        venue ={item._embedded.venues[0].city.name}
                     />
                )}
             </Flex>

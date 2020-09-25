@@ -26,7 +26,7 @@ const Dashboard = () => {
                 <Searchbar/>
                 { showSavedEvents ? <SavedEvents/> :
                 <Eventboard/> } 
-                {showAddEventModal && <Addeventmodal/>}
+                {showAddEventModal === true && <Addeventmodal/>}
             </div>
         </Container>
      )

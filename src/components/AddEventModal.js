@@ -185,7 +185,7 @@ const Addmodal = () => {
             newBg: false
         })
     const hideForm = () => {
-        dispatch2({type:'showAddEventModal', payload: false});
+        dispatch2({type:'showAddEventModal', payload: true});
     }
     
     const HandleChange = (e) => {
