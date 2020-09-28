@@ -5,7 +5,8 @@ const initialState = [];
 const reducer = (state, action) => {
     switch(action.type) {
         case 'Add':
-            return state = action.payload;
+            state.push(action.payload);
+            return state;
     }
 }
 

@@ -2,6 +2,7 @@ import React, {useContext, useState, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import  {SecondContext} from '../context/secondContext';
+import {TableContext} from '../context/TableContext';
 
 const Form = styled.form`
     height: 100%;
@@ -74,20 +75,62 @@ const Span = styled.span`
 
 const EventForm = () => {
     const {displayState, dispatch2} = useContext(SecondContext);
+    const {dispatch3} = useContext(TableContext);
     const {showAddEventModal} = displayState;
     const [state, setState] = useState(false);
+    const [event,setEvent] = useState({
+        eventImage: "", 
+        eventName: "", 
+        eventType: "", 
+        eventGenre: "", 
+        eventsubGenre: "",
+        eventCountry: "",
+        eventCity: "",
+        eventState: "",
+        eventAddress: "",
+        eventDate: "",
+        eventTime: "",
+        eventTimezone: ""
+    })
+
+    const {
+        eventName,
+        eventType,
+        eventGenre,
+        eventsubGenre,
+        eventCountry,
+        eventCity,
+        eventState,
+        eventAddress,
+        eventDate,
+        eventTime,
+        eventTimezone
+    } = event
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const {name, value} = e.target;
+        dispatch3({type:"Add", payload: event});
+    }
+    
+    const handleChange = (e) => {
+       const {name, value} = e.target;
+       setEvent({...event, [name] : value});
+    }
+    
     const handleClick = () => {
-        dispatch2({type: 'showAddEventModal', payload: false});
+        setState(false);
+        setTimeout(() => {
+            dispatch2({type: 'showAddEventModal', payload: false});
+        }, 400)
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            setState(true);
-        }, 100)
-    })
+        setState(true);
+    },[])
     
     return ( 
-        <Form style={{transform:`${state && `translateY(0rem)`}`}}>
+        <Form onSubmit={handleSubmit} style={{transform:`${state ? `translateY(0rem)` : `translateY(-42rem)`}`}}>
             <H2>
                 <span style={{marginRight: ".5rem"}}><FontAwesomeIcon icon="pen"/></span>
                 Create Your Event
@@ -96,41 +139,88 @@ const EventForm = () => {
             <FormContent>
                 <label>
                     <H4>EventName</H4>
-                    <Input type="text" placeholder="...event" style={{width:'100%'}}/>
+                    <Input 
+                        type="text" 
+                        placeholder="...event" 
+                        style={{width:'100%'}}
+                        name="eventName"
+                        value={eventName}
+                        onChange={handleChange}
+                    />
                 </label>
                 <Grid1>
                     <label>
                         <H4>Type</H4>
-                        <Input type="text" placeholder="...type"/>
+                        <Input 
+                            type="text" 
+                            placeholder="...type"
+                            name="eventType"
+                            value={eventType}
+                            onChange={handleChange}
+                        />
                     </label>
                     <label>
                         <H4>Genre</H4>
-                        <Input type="text" placeholder="...genre"/>
+                        <Input 
+                            type="text" 
+                            placeholder="...genre"
+                            name="eventGenre"
+                            value={eventGenre}
+                            onChange={handleChange}
+                        />
                     </label>
                     <label>
                         <H4>Subgenre</H4>
-                        <Input type="text" placeholder="subgenre"/>
+                        <Input 
+                            type="text" 
+                            placeholder="subgenre"
+                            value={eventsubGenre}
+                            name="eventsubGenre"
+                            onChange={handleChange}
+                        />
                     </label>
                 </Grid1>
                 <Grid2>
                     <div>
                         <label>
                             <H4>Country</H4>
-                            <Input type="text" placeholder="country"/>
+                            <Input 
+                                type="text" 
+                                placeholder="country"
+                                value={eventCountry}
+                                name="eventCountry"
+                                onChange={handleChange}
+                            />
                         </label>
                         <label>
                             <H4>Date</H4>
-                            <Input type="datetime-local"/>
+                            <Input 
+                                type="datetime-local"
+                                value={eventDate}
+                                name="eventDate"
+                                onChange={handleChange}
+                            />
                         </label>
                     </div>
                     <div>
                         <label>
-                            <H4>City</H4>
-                            <Input type="text"/>
+                            <H4>State</H4>
+                            <Input 
+                                type="text"
+                                value={eventState}
+                                name="eventState"
+                                onChange={handleChange}
+                            />
                         </label>
                         <label>
-                            <H4>timezone</H4>
-                            <select style={{border: '1px solid #bbb'}} name="" id="">
+                            <H4>Timezone</H4>
+                            <select 
+                                style={{border: '1px solid #bbb'}} 
+                                name="eventTimezone"
+                                value={eventTimezone}
+                                onChange={handleChange} 
+                            >
+                                <option value="">GMT</option>
                                 <option value="ACDT">ACDT</option>
                                 <option value="ACST">ACST</option>
                                 <option value="CAT">CAT</option>
@@ -142,7 +232,11 @@ const EventForm = () => {
                 </Grid2>
                 <label>
                     <H4>Location</H4>
-                    <Area name=""></Area>
+                    <Area 
+                        name="eventAddress"
+                        value={eventAddress}
+                        onChange={handleChange}
+                    ></Area>
                 </label>
                 <Button type="submit">Add</Button>
             </FormContent>

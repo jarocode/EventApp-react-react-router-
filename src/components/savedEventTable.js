@@ -48,6 +48,13 @@ const Button = styled.button`
     opacity: 1;
   }
 `
+const Tr = styled.tr`
+  background: #1a1a3d;
+  margin-bottom: 1rem !important;
+  &:nth-of-type(odd) {
+    background: #3c3c8f;
+  }
+`
 
 const Table = () => {
   
@@ -59,11 +66,12 @@ const Table = () => {
   background: ${tableData.newBg === true ? first : second};
   font-size: 0.7em;
 `
+console.log(tableData);
   return ( 
         <Container>
           <TableData>
               <Thead>
-                <tr>
+                {/* <tr> */}
                     <Th><FontAwesomeIcon icon='map-marked' color='#ff3434'/>&nbsp;&nbsp;Event</Th>
                     <Th><FontAwesomeIcon icon='file-archive' color='#ff3434'/>&nbsp;&nbsp;Type</Th>
                     <Th><FontAwesomeIcon icon='file-alt' color='#ff3434'/>&nbsp;&nbsp;Genre</Th>
@@ -74,27 +82,30 @@ const Table = () => {
                     <Th><FontAwesomeIcon icon='calendar-alt' color='#ff3434'/>&nbsp;&nbsp;Date</Th>
                     <Th><FontAwesomeIcon icon='clock' color='#ff3434'/>&nbsp;&nbsp;Time</Th>
                     <Th><FontAwesomeIcon icon='globe' color='#ff3434'/>&nbsp;&nbsp;Timezone</Th>
-                </tr>
+                {/* </tr> */}
                 </Thead>
-                { tableData.map( (event, index) => <Tbody>
-                <tr>
-                    <Td>{event.newEvent}</Td>
-                    <Td>{event.newType}</Td>
-                    <Td>{event.newGenre}</Td>
-                    <Td>{event.newSubgenre}</Td>
-                    <Td>{event.newCountry}</Td>
-                    <Td>{event.newState}</Td>
-                    <Td>{event.newAddress}, {event.newCity}</Td>
-                    <Td>{event.newDate}</Td>
-                    <Td>{event.newTime}</Td>
-                    <Td>{event.newTimezone}</Td>
-                </tr>
-                <Button onClick ={() => RemoveClick(tableData, index, dispatch3)}>
+                <Tbody>
+                { tableData.map( (event, index) => 
+                <Tr>
+                    <Td>{event.eventName}</Td>
+                    <Td>{event.eventType}</Td>
+                    <Td>{event.eventGenre}</Td>
+                    <Td>{event.eventsubGenre}</Td>
+                    <Td>{event.eventCountry}</Td>
+                    <Td>{event.eventState}</Td>
+                    <Td>{event.eventAddress}, {event.eventCity}</Td>
+                    <Td>{event.eventDate}</Td>
+                    <Td>{event.eventTime}</Td>
+                    <Td>{event.eventTimeZone}</Td>
+                </Tr>
+                
+                /* <Button onClick ={() => RemoveClick(tableData, index, dispatch3)}>
                   <FontAwesomeIcon icon='trash'/>
-                </Button>
-              </Tbody>)}
-                 
+                </Button> */
+              )}  
+            </Tbody>
           </TableData>
+          
         </Container>
      );
 }

@@ -37,20 +37,25 @@ const Span = styled.span`
     color: #1a1a3d;
     opacity: 0.7;
 `
+const handleClick = () => {
+
+}
 
 const NoEvent = () => {
     const [state, setState] = useState(false);
+    const {dispatch2} = useContext(SecondContext);
+    const handleClick = () => {
+        dispatch2({type:"showNoEventModal", payLoad: false});
+    }
     useEffect(() => {
-        // setTimeout(() => {
-            setState(true);
-        // }, 100)
-    })
+        setState(true);
+    });
     return ( 
         <Container style={{opacity: `${state && '1'}`, transform: `${state && 'translateX(0rem)'}`}}>
             <Content>
                 <Span><FontAwesomeIcon icon="frown" size="5x"/></Span>
                 <h1 style={{color: '#666'}}>...Sorry no Events Found!</h1>
-                <Button>close</Button>
+                <Button onClick={handleClick}>close</Button>
             </Content>
         </Container>
      );

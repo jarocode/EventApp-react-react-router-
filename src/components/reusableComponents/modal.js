@@ -23,10 +23,10 @@ const Modal = ({content}) => {
     const [state, setState] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => {
-            setState(true);
-        }, 100)
+        setState(true);
     }, []);
+
+    
     
     return (  
         <Container style={{opacity: `${state ? `1` : `0`}`}}>

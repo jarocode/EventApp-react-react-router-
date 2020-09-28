@@ -2,7 +2,9 @@ import React, {useReducer, createContext} from 'react';
 
 const  initialState = {
     showSavedEvents: false,
-    showAddEventModal : false
+    showAddEventModal : false,
+    showSuccessModal: false,
+    showNoEventModal: false
 };
     
 const reducer = (state, action) => {
@@ -10,7 +12,11 @@ const reducer = (state, action) => {
         case 'showSavedEvents':
             return {...state, showSavedEvents : action.payLoad};
         case 'showAddEventModal' :
-            return {...state, showAddEventModal: action.payLoad} ;
+            return {...state, showAddEventModal: action.payLoad};
+        case 'showSuccessModal' :
+            return {...state, showSuccessModal: action.payLoad};
+        case 'showNoEventModal' :
+            return {...state, showNoEventModal: action.payLoad};
         default:
             return state;
         }

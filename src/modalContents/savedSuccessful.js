@@ -2,7 +2,8 @@ import React, {useContext, useState, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import  {SecondContext} from '../context/secondContext';
-import loader from '../loaders/25.gif'
+import loader from '../loaders/25.gif';
+import {withRouter} from 'react-router-dom';
 
 const Container = styled.div`
     width: 25rem;
@@ -10,6 +11,9 @@ const Container = styled.div`
     background: #fff;
     margin: 7rem auto auto auto;
     box-shadow: 1px 1px 1px 1px #000, -1px -1px 1px 1px #000;
+    transform: translateX(23rem);
+    opacity: 0;
+    transition: all 0.4s ease-in;
 `
 const Content  = styled.div`
     margin: 0;
@@ -55,19 +59,30 @@ const H1 = styled.h1`
     
 const SavedSuccessful = () => {
     const [state, setState] = useState(false);
-     
+    const [showState, setShowstate] = useState(false);
+    const {dispatch2} = useContext(SecondContext);
+    
+    const handleClick = () => {
+        dispatch2({type: 'showSuccessModal', payLoad: false});
+    }
+    
+    const handleClose = () => {
+        // dispatch2({type: 'showSavedEvents', payload: true});
+        // history.push('/');
+    }
+    
     useEffect(() => {
         setTimeout(() => {
             setState(true);
-        }, 5000)
-     
+         }, 6000)
+        setShowstate(true);
     }, [])
     
     return ( 
-        <Container>
+        <Container style={{opacity: `${showState && '1'}`, transform: `${showState && 'translateX(0rem)'}`}}>
             <Content>
                 <Div>
-                    <H1>&times;</H1>
+                    <H1 onClick={handleClick}>&times;</H1>
                    { !state?<img src={loader} alt=""/> :
                     <Div2>
                         <span><FontAwesomeIcon icon="check" size="4x" color="#fff"/></span>
@@ -76,7 +91,7 @@ const SavedSuccessful = () => {
                 {state? <h1 style={{color: '#666'}}>event saved!!</h1> :
                 <h1 style={{color: '#666'}}>please wait...</h1>}
                 { state ? <Button>View events</Button> :
-                <Button>Close</Button>}
+                <Button onClick={handleClose}>Close</Button>}
             </Content>
         </Container>
      );

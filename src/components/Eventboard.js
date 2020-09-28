@@ -7,6 +7,7 @@ import {countryContext} from '../context/countryContext';
 import {useDispatch, useSelector} from 'react-redux';
 import ApiCall from '../actions/firstApiAction';
 import {ADD_EVENTS, CHANGE_HEADER} from '../actions/types';
+import {SecondContext} from '../context/secondContext';
 
 const Container = styled.div`
     position: static;
@@ -41,8 +42,8 @@ const Flex = styled.div`
 const Eventboard = () => {
     const state = useSelector(state => state.event);
     const {restOfState, header} = state;
-    // const {state, dispatch} = useContext(MyContext);
-    // const {restOfState, header} = state;
+    const {displayState, dispatch2} = useContext(SecondContext);
+    const {showNoEventModal} = displayState;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(ApiCall());
@@ -67,11 +68,12 @@ const Eventboard = () => {
             Api().then(res => {
                 if (res._embedded === undefined) {
                     console.log('no event found');
+                    dispatch2({type: 'showNoEventModal', payLoad: true});
                 }
                 else {
                     const {events} = res._embedded;
                      console.log(events);
-                     dispatch({type: CHANGE_HEADER, payload: classification })
+                     dispatch({type: CHANGE_HEADER, payload: classification });
                      dispatch({type: ADD_EVENTS, payload: events })
                 }
             });
@@ -93,7 +95,7 @@ const Eventboard = () => {
                         id={item.id}
                         date ={item.dates.start.localDate}
                         image ={item.images[1].url}
-                        venue ={item._embedded.venues[0].city.name}
+                        venue ={item._embedded ?item._embedded.venues[0].city.name : 'no venue'}
                     />
                )}
             </Flex>

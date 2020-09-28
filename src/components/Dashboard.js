@@ -7,7 +7,7 @@ import SavedEvents from './SavedEvents';
 import {SecondContext} from '../context/secondContext';
 import Modal from './reusableComponents/modal';
 import EventForm from '../modalContents/AddEventForm';
-import  NoEvent from '../modalContents/NoEventFound';
+import NoEvent from '../modalContents/NoEventFound';
 import SavedSuccessful from '../modalContents/NoEventFound';
 
  const Container = styled.div`
@@ -19,10 +19,11 @@ import SavedSuccessful from '../modalContents/NoEventFound';
 const Dashboard = () => {
    
     const {displayState} = useContext(SecondContext);
-    const {showSavedEvents, showAddEventModal} = displayState;
+    const {showSavedEvents, showAddEventModal, showNoEventModal} = displayState;
     return ( 
         <Container>
             {showAddEventModal && <Modal content ={EventForm}/>}
+            {showNoEventModal && <Modal content={NoEvent}/>}
             <SideBar/>
             <div>
                 <Searchbar/>

@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import styled from '@emotion/styled';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Spinner from './Spinner';
-import {TableContext} from '../context/TableContext';
 import {useDispatch, useSelector} from 'react-redux';
 import EventDetailsAPI from '../actions/detailsAction';
 import DetailsCard from './EventDetailsCard';
+import {SecondContext} from '../context/secondContext';
+import SavedSuccessful from '../modalContents/savedSuccessful';
+import Modal from './reusableComponents/modal';
 
 
 const Brand = styled.div`
@@ -29,7 +30,8 @@ const Li = styled.li`
 const EventDetails = ({match}) => {
     const dispatch = useDispatch();
     const details = useSelector(state => state.details);
-    
+    const {displayState} = useContext(SecondContext);
+    const {showSuccessModal} = displayState;
     // const {tableData, dispatch3} = useContext(TableContext);
     
     useEffect(() => {
@@ -38,6 +40,7 @@ const EventDetails = ({match}) => {
     
     return ( 
         <>
+            {showSuccessModal && <Modal content={SavedSuccessful}/>}
             <Nav>
                 <Brand>
                     <h2>JAROVENTS</h2>
@@ -45,8 +48,10 @@ const EventDetails = ({match}) => {
                 <ul>
                     <Li>Home</Li>
                     <Li>About</Li>
+                    <Li><button>back</button></Li>
                 </ul>
                 </Nav>
+                
                 {Object.keys(details) === 0? <Spinner/> :
                 <DetailsCard data = {details}/>}
         </>

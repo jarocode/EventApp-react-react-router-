@@ -2,6 +2,8 @@ import React, {Fragment, useContext} from 'react';
 import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {TableContext} from '../context/TableContext';
+import {SecondContext} from '../context/secondContext';
+import SavedSuccessful from '../modalContents/savedSuccessful';
 
 const Card = styled.div`
     border: 1px solid #fff;
@@ -78,18 +80,25 @@ const DetailP = styled.div`
 `
 const Span1 = styled.span`
     color: #00f;
+    margin-right: .7rem;
+`
+const Span2 = styled.span`
+    margin-right: .7rem;
 `
 const Button = styled.button`
-    margin: 4rem 2.4rem 0 3.3rem; 
+    margin: 4rem 2rem 0 4.2rem; 
     width: 85%;
     padding: 1rem 0 1rem 0;
     color: #fff;
     background: #00f;
     border: 1px solid #00f;
     border-radius: 7px;
+    font-size: 1em;
 `
 const DetailsCard = ({data}) => {
     const {dispatch3} = useContext(TableContext);
+    const {displayState, dispatch2} = useContext(SecondContext);
+    const {showSuccessModal} = displayState;
     const {
         eventImage, 
         eventName, 
@@ -104,6 +113,7 @@ const DetailsCard = ({data}) => {
         eventTime,
         eventTimezone
     } = data
+    
     const UpCard = styled.div`
     width: 100%;
     background: #000;
@@ -124,7 +134,9 @@ const DetailsCard = ({data}) => {
     }
 `
 const handleSubmit = () => {
-    console.log('hi');
+    const newEvent = data;
+    dispatch2({type: 'showSuccessModal', payLoad: true});
+    dispatch3({type: 'Add', payload: newEvent});
 }
     return ( 
         <Fragment>
@@ -169,15 +181,15 @@ const handleSubmit = () => {
                                 <DetailCard>
                                     <div style={{margin: '0 1.5rem 0 1.5rem'}}>
                                         <DetailP>
-                                            <span><FontAwesomeIcon icon='city'/></span> 
+                                            <Span2><FontAwesomeIcon icon='city'/></Span2> 
                                             {eventCountry}
                                         </DetailP>
                                         <DetailP>
-                                            <span><FontAwesomeIcon icon='location-arrow'/></span>
+                                            <Span2><FontAwesomeIcon icon='location-arrow'/></Span2>
                                             {eventCity}, {eventState}
                                         </DetailP>
                                         <p style={{color: '#6f6f6f'}}>
-                                            <span><FontAwesomeIcon icon='location-arrow'/></span>
+                                            <Span2><FontAwesomeIcon icon='location-arrow'/></Span2>
                                             {eventAddress}
                                         </p>
                                     </div>
@@ -193,21 +205,24 @@ const handleSubmit = () => {
                                 <DetailCard>
                                     <div style={{margin: '0 1.5rem 0 1.5rem'}}>
                                         <DetailP>
-                                            <span><FontAwesomeIcon icon='city'/></span>
+                                            <Span2><FontAwesomeIcon icon='city'/></Span2>
                                             {eventDate}
                                         </DetailP>
                                         <DetailP>
-                                            <span><FontAwesomeIcon icon='location-arrow'/></span>
+                                            <Span2><FontAwesomeIcon icon='location-arrow'/></Span2>
                                             {eventTime}
                                         </DetailP>
                                         <p style={{color: '#6f6f6f'}}>
-                                            <span><FontAwesomeIcon icon='location-arrow'/></span>
+                                            <Span2><FontAwesomeIcon icon='location-arrow'/></Span2>
                                             {eventTimezone}
                                         </p>
                                     </div>
                                 </DetailCard>
                              </DetailDiv>
-                             <Button onClick ={handleSubmit}><FontAwesomeIcon icon='pen-alt'/>Save event</Button>
+                             <Button 
+                                onClick ={handleSubmit}><Span2><FontAwesomeIcon icon='pen-alt'/></Span2>
+                                Save event
+                             </Button>
                         </LowCard>
                 </Card> }
         </Fragment>
