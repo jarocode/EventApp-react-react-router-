@@ -26,7 +26,10 @@ import {
     faCheck,
     faCheckCircle,
     faChevronRight,
-    faSmile
+    faSmile,
+    faFrownOpen,
+    faFrown,
+    faGrimace
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -56,5 +59,8 @@ library.add(
     faCheck,
     faCheckCircle,
     faChevronRight,
-    faSmile
+    faSmile,
+    faFrownOpen,
+    faFrown,
+    faGrimace
 );

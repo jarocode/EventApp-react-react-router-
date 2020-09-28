@@ -7,10 +7,10 @@ import EventDetails from './components/EventDetails';
 import Navbar from './components/Navbar';
 import {SecondProvider} from './context/secondContext';
 import {TableProvider} from './context/TableContext';
-import SuccessModal from './components/SuccessModal';
 import {CountryProvider} from './context/countryContext';
 import store from  './store';
 import {Provider} from 'react-redux';
+
 
 function App() {
   return (

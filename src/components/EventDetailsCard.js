@@ -116,7 +116,7 @@ const DetailsCard = ({data}) => {
         position: absolute;
         content: '';
         z-index: -1;
-        background: #3c3c5f;
+        background: url(${eventImage}) center/cover no-repeat;
         width: 100%;
         height: 100%;
         top: 0;
@@ -207,7 +207,7 @@ const handleSubmit = () => {
                                     </div>
                                 </DetailCard>
                              </DetailDiv>
-                             <Button onClick ={handleSubmit}><FontAwesomeIcon icon='pen-alt'/>ADD EVENT</Button>
+                             <Button onClick ={handleSubmit}><FontAwesomeIcon icon='pen-alt'/>Save event</Button>
                         </LowCard>
                 </Card> }
         </Fragment>

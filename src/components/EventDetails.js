@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Spinner from './Spinner';
 import {TableContext} from '../context/TableContext';
-import SuccessModal from './SuccessModal';
 import {useDispatch, useSelector} from 'react-redux';
 import EventDetailsAPI from '../actions/detailsAction';
 import DetailsCard from './EventDetailsCard';
@@ -48,7 +47,6 @@ const EventDetails = ({match}) => {
                     <Li>About</Li>
                 </ul>
                 </Nav>
-                {details.showSuccess === 'true' && <SuccessModal/>}
                 {Object.keys(details) === 0? <Spinner/> :
                 <DetailsCard data = {details}/>}
         </>

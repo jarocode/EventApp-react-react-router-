@@ -10,6 +10,10 @@ const Container = styled.div`
     margin: 1.5rem;
     box-shadow: 2px 2px 4px 4px #eee;
     border-radius: 3px;
+    transition: transform ease 0.5s;
+    &:hover{
+        transform: scale(1.2);
+    }
 `
 
 const Lowercard = styled.div`

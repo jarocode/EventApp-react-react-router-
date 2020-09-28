@@ -9,11 +9,9 @@ const Container  = styled.div`
     & {
         position: relative;
         background: url("./img/checklist2.jpg")  center/cover no-repeat;
-        z-index: -1; 
+        z-index: 1; 
         width: 80rem;
         height: 10.35rem;
-        
-
     }
     & :after {
         content: '';
@@ -24,7 +22,7 @@ const Container  = styled.div`
         left: 0rem;
         height: 100%;
         width: 100%;
-        z-index: -2;
+        z-index: -1;
     }
 `
 const Flex1 = styled.div`
@@ -47,7 +45,6 @@ const Input = styled.input`
     color: #eee;
     position: relative;
     z-index: 3;
-    display: block;
     &::placeholder {
         color: #ddd;
     }

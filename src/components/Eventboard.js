@@ -15,7 +15,6 @@ const Container = styled.div`
     border-radius: 13px;
     background: #fff;
     margin: -1rem .4rem 0 15.5rem;
-    z-index: 6;
     top: 7.5rem;
     box-shadow: 1px 2px 2px 2px #afafaf;
 `

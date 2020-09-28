@@ -3,7 +3,10 @@ import {ADD_EVENT_DETAILS} from  './types';
 const EventDetailsAPI = (match)  => async (dispatch, getState) => {
     const res =   await fetch(`https://app.ticketmaster.com/discovery/v2/events/${match.params.id}.json?apikey=ckkAjaoFXB0PY72OcQT2UinV6PReL8m4`);
     const result = await res.json();
-    const {dates, images, name, classifications, _embedded } = result;
+    if (result === undefined) {
+        console.log('details not available')
+    } else {
+        const {dates, images, name, classifications, _embedded } = result;
     const {genre, segment, subGenre} = classifications[0];
     const {country, city, state, address} =_embedded.venues[0] 
     
@@ -20,7 +23,7 @@ const EventDetailsAPI = (match)  => async (dispatch, getState) => {
     //event location data
     const eventCountry = country.name;
     const eventCity = city.name;
-    const eventState = state.name;
+    const eventState = state === undefined ? '' : state.name;
     const eventAddress = address.line1;
     
     // event time data
@@ -44,6 +47,7 @@ const EventDetailsAPI = (match)  => async (dispatch, getState) => {
     }
 dispatch({type: ADD_EVENT_DETAILS, payLoad: eventData });
 console.log(getState().details);
+    }
  }
 
  export default EventDetailsAPI;
