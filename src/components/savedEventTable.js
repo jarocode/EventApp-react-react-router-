@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {TableContext} from '../context/TableContext';
 import RemoveClick from '../Functions/removeClick';
@@ -31,21 +31,13 @@ const Thead = styled.thead`
   /* padding: 10px 0 10px 0; */
 `
 
-const Button = styled.button`
-  left: 46.6rem;
-  position: absolute;
-  margin-top: -2.7rem;
-  width: 3.7%;
-  height: 6%;
-  background: #ff3434;
-  border: 1px solid #ff3434;
-  color: #fff;
-  border-radius: 45%;
-  opacity : 0;
-  transition: all 0.5s ease-in-out;
-  outline: none;
-  &:hover {
-    opacity: 1;
+const Span = styled.span`
+  margin: 2rem 0 0 2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  cursor: pointer;
+  &:hover{
+      color: #f00;
   }
 `
 const Tr = styled.tr`
@@ -53,6 +45,9 @@ const Tr = styled.tr`
   margin-bottom: 1rem !important;
   &:nth-of-type(odd) {
     background: #3c3c8f;
+  }
+  &:hover ${Span}{
+    opacity: 1;
   }
 `
 
@@ -97,13 +92,13 @@ console.log(tableData);
                     <Td>{event.eventDate}</Td>
                     <Td>{event.eventTime}</Td>
                     <Td>{event.eventTimeZone}</Td>
+                    <Span onClick ={() => RemoveClick(tableData, index, dispatch3)}>
+                    <FontAwesomeIcon icon='trash'size="2x"/>
+                  </Span>
                 </Tr>
-                
-                /* <Button onClick ={() => RemoveClick(tableData, index, dispatch3)}>
-                  <FontAwesomeIcon icon='trash'/>
-                </Button> */
-              )}  
-            </Tbody>
+                )}  
+
+              </Tbody>
           </TableData>
           
         </Container>

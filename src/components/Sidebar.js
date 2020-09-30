@@ -49,8 +49,8 @@ const ListDiv = styled.div`
 `
 const Li = styled.li`
     text-decoration: none;
-    padding: .5rem 0 .5rem 1rem;
-    margin: 0 1rem 1rem 0;
+    padding: .5rem 0 .5rem 3rem;
+    margin: 0 3rem 1rem 0;
     font-size: .9em;
     list-style: none;
     cursor: pointer;
@@ -64,20 +64,25 @@ const Span = styled.span`
 `
 
 const SideBar = () => {
-    const [name, setName] = useState(
+    const [side, setSide] = useState(
         [
-            'My events', 
-            'Add Events',
-            'music',
-            'sports',
-            'fashion',
+            {name:'My events', icon: "calendar-check", active:false}, 
+            {name:'Add Events', icon: "pen", active:false},
+            {name:'music', icon: "music", active: false},
+            {name: 'sports', icon: "basketball-ball", active: false},
+            {name:'fashion', icon: "tshirt", active: false}
         ])
+    
     const [ID, setID] = useState('head')
     const {details, dispatch2} = useContext(SecondContext);
     const {newState} = useContext(countryContext);
     const [state1, disp] = newState;
-    // const {classification} = state1;
-    // console.log(ID);
+    
+    const activeStyle ={
+        background: "linear-gradient(to right, #ff3434, #1a1a3d)",
+        color: "#fff"
+    }
+    
     return ( 
         <Container>
            <User>
@@ -93,16 +98,18 @@ const SideBar = () => {
            </User>
            
            <ListDiv>
-                <ul>
-                    { name.map((el, Index) =>
+                <ul style = {{padding: '0'}}>
+                    { side.map((el, Index) =>
                      <Li 
                         key={Index} 
                         id={Index} 
-                        onClick={() => SelectClick(el, dispatch2,setID,Index,disp)}>
+                        onClick={() => SelectClick(el, dispatch2,setID,Index,disp, el.active)}
+                        // style={activeStyle}
+                        >
                         <Span>
                             <FontAwesomeIcon 
-                                icon='music'
-                            />&nbsp;&nbsp;{el}</Span>
+                                icon={el.icon}
+                            />&nbsp;&nbsp;{el.name}</Span>
                     </Li>)
                     }
                 </ul>

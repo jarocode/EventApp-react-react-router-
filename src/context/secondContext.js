@@ -1,7 +1,7 @@
 import React, {useReducer, createContext} from 'react';
 
 const  initialState = {
-    showSavedEvents: false,
+    showSavedEvents: true,
     showAddEventModal : false,
     showSuccessModal: false,
     showNoEventModal: false

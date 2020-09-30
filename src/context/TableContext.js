@@ -7,6 +7,9 @@ const reducer = (state, action) => {
         case 'Add':
             state.push(action.payload);
             return state;
+        case 'Remove':
+            let newState = [...action.payload]
+            return newState;
     }
 }
 

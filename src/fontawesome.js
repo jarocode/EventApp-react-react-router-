@@ -29,7 +29,11 @@ import {
     faSmile,
     faFrownOpen,
     faFrown,
-    faGrimace
+    faGrimace,
+    faBasketballBall,
+    faTshirt,
+    faCalendarWeek,
+    faCalendarCheck
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -62,5 +66,9 @@ library.add(
     faSmile,
     faFrownOpen,
     faFrown,
-    faGrimace
+    faGrimace,
+    faBasketballBall,
+    faTshirt,
+    faCalendarWeek,
+    faCalendarCheck
 );

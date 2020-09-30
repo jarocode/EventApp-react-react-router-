@@ -13,9 +13,9 @@ const useContextmenu = (el) => {
     }, [isVisible])
      useEffect(() => {
         document.getElementById(el).addEventListener('click', handleClick);
-        return () => {
-            document.getElementById(el).removeEventListener('click', handleClick);
-        }
+        // return () => {
+        //     document.getElementById(el).removeEventListener('click', handleClick);
+        // }
      }, [el, isVisible]);
     return {xpos, ypos, isVisible};
 }

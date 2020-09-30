@@ -9,9 +9,9 @@ const Classification = (indexo, dispatch) => {
     }
 }
 
-export const SelectClick = (names , disp, set, ind, disp2) => {
+export const SelectClick = (side , disp, set, ind, disp2, active) => {
     
-    switch(names) {
+    switch(side.name){
         case 'My events':
             return disp({type:'showSavedEvents', payLoad: true});
                    
